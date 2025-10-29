@@ -8,12 +8,13 @@
       <div class="flex flex-col gap-8">
         <div>
           <p>
-            Machine Learning Engineer & Software Developer with expertise in AI
-            and data engineering.
+            I build and ship machine learning systems — fast.
           </p>
           <p>
-            Currently pursuing BSc in Mathematics, Statistics & Computer Science
-            at University of Toronto.
+            I care about solving real problems, not just training models.
+          </p>
+          <p>
+            Currently studying Math, Stats & CS at UofT.
           </p>
         </div>
 
@@ -24,16 +25,11 @@
       </div>
 
       <p class="mb-8 2xl:mb-0">
-        Passionate about machine learning and artificial intelligence, I've
-        gained extensive experience working with leading companies like RBC,
-        Manulife, and DeepCove Cybersecurity.
+        I'm driven by hard problems and real-world results. I've worked across finance and cybersecurity, where reliability and scale actually matter.
         <br />
-        My expertise spans deep learning, data engineering, and software
-        development, with a focus on building scalable ML solutions and
-        AI-powered applications.
+        I prefer small teams, quick iteration cycles, and taking ideas from zero to deployed.
         <br />
-        I enjoy tackling complex problems in AI/ML, from training transformer
-        models to deploying containerized solutions in cloud environments.
+        I'm competitive, curious, and always pushing for the next challenge — especially where AI meets real impact.
       </p>
     </div>
     <div class="ml-4 flex gap-2 text-secondary 2xl:hidden">
