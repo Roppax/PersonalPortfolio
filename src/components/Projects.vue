@@ -34,6 +34,12 @@ const breakpoints = {
 
 const PROJECTS = [
   {
+    name: "Personal Portfolio",
+    redirect: "https://robreder.com",
+    description: "A modern, responsive portfolio website built with Vue 3, TypeScript, and Tailwind CSS. Features interactive animations, project showcases, and a dynamic work timeline. Deployed on Vercel with custom domain and optimized for performance.",
+    image: "/portfolio-graphic.jpg"
+  },
+  {
     name: "Project Bergster",
     redirect: "https://github.com/Roppax/ProjectBergster",
     description: "Winner of Google Student Developer Hackathon @ UofGuelph. A cognitive training and emotional detection robot using Computer Vision with Python, TensorFlow & FaceAPI.js. Ensures 100% data privacy with offline functionality and is now used by 30+ students.",
