@@ -67,19 +67,19 @@ const props = defineProps<PageProps>();
 const LANGUAGES = [
   { name: "Python", icon: "python" },
   { name: "TypeScript", icon: "ts" },
-  { name: "JavaScript", icon: "js" },
-  { name: "Java", icon: "java" },
-  { name: "Rust", icon: "rust" },
-  { name: "C++", icon: "c" },
-  { name: "R", icon: "r" },
-  { name: "SQL", icon: "sql" }
+  { name: "JavaScript", icon: "kisspng-javascript-logo-product-design-brand-1713939908433" },
+  { name: "Java", icon: "java-icon" },
+  { name: "Rust", icon: "rust-icon" },
+  { name: "C++", icon: "cpp-icon" },
+  { name: "R", icon: "r-icon" },
+  { name: "SQL", icon: "sql-icon" }
 ];
 
 const FRAMEWORKS = [
   { name: "Vue.js", icon: "vue" },
   { name: "React", icon: "react" },
   { name: "Node.js", icon: "node" },
-  { name: "Express", icon: "express" },
+  { name: "Express", icon: "express-icon" },
   { name: "FastAPI", icon: "fastapi" },
   { name: "Django", icon: "django" },
   { name: "Flask", icon: "flask" }
