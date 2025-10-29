@@ -1,0 +1,291 @@
+<template>
+  <div
+    class="timeline-container absolute top-1/2 flex h-full w-full flex-1 -translate-y-1/2 flex-col overflow-auto 2xl:overflow-visible"
+    @scroll="onMobileScroll"
+  >
+    <section
+      class="relative flex w-[250vh] flex-1 items-center gap-4 text-primary 2xl:w-full"
+      :style="`
+      --experiences: ${EXPERIENCES.length};
+      --primary: ${primaryColor};
+      --secondary: ${secondaryColor};
+      --mobile-experience: ${mobileExperience}`"
+    >
+      <div class="scroll-snap">{{ Math.min(...EXPERIENCES.map((exp) => exp.start)) }}</div>
+      <div class="relative w-full">
+        <hr class="line absolute h-1 w-full rounded-md bg-secondary text-secondary" />
+
+        <hr
+          class="line-secondary line-secondary-mobile line-secondary-width-mobile absolute left-0 h-1 rounded-md bg-primary text-primary transition-all duration-[0.35s]"
+          :class="activeExperience ? 'line-animation' : 'line-still'"
+          :style="`--experience-idx: ${activeExperienceIdx}`"
+        />
+      </div>
+      <div class="scroll-snap pr-4 2xl:p-0">{{ new Date().getFullYear() }}</div>
+
+      <div class="absolute left-0 flex w-full items-center justify-evenly">
+        <div
+          v-for="(experience, i) in EXPERIENCES"
+          class="dot-border after:transition-all"
+          :class="{
+            '2xl:after:!border-primary': activeExperienceIdx === i,
+            '2xl:after:!border-secondary': activeExperienceIdx !== i,
+            'after:border-primary': mobileExperience - 1 === i
+          }"
+          :key="experience.title"
+        />
+      </div>
+
+      <div class="absolute left-0 flex w-full items-center justify-evenly text-responsive-h3">
+        <div
+          v-for="(experience, i) in EXPERIENCES"
+          :key="experience.title"
+          :style="`--text: '${experience.title}'`"
+          :class="{
+            'hidden-dot-important': activeExperience && experience.title === activeExperience,
+            'mobile-only:hidden-dot-important': i % 2 === 0,
+            'top-title': i % 2 !== 0
+          }"
+          class="dot-title"
+        />
+      </div>
+
+      <div class="dot-container absolute left-0 flex w-full items-center justify-evenly">
+        <button
+          v-for="(experience, i) in EXPERIENCES"
+          class="dot scroll-snap"
+          aria-label="Work Experience"
+          :key="experience.title"
+          @mouseover="() => setActiveExperience(experience.title)"
+          @mouseleave="() => setActiveExperience('')"
+        >
+          <article
+            class="dot-article"
+            :class="{
+              '2xl:hidden-dot': !activeExperience || experience.title !== activeExperience,
+              'article-top': i % 2 !== 0,
+              'article-bottom': i % 2 === 0
+            }"
+          >
+            <header class="text-primary text-responsive-h3">
+              {{ experience.title }}
+            </header>
+            <div class="w-full text-text text-responsive-h5">{{ experience.text }}</div>
+            <footer>{{ experience.note }}</footer>
+          </article>
+        </button>
+      </div>
+    </section>
+  </div>
+</template>
+
+<script setup lang="ts">
+import resolveConfig from "tailwindcss/resolveConfig";
+import { ref, watch } from "vue";
+import tailwindConfig from "../../tailwind.config";
+
+const config = resolveConfig(tailwindConfig);
+const primaryColor = config.theme.colors.primary;
+const secondaryColor = config.theme.colors.secondary;
+
+const emit = defineEmits(["experienceFocus", "experienceUnfocus"]);
+// Ordered exactly as requested: UTMISt -> DeepCove -> Manulife -> RBC
+const EXPERIENCES = [
+  {
+    start: 2024,
+    title: "UTMIST",
+    text: "As a Machine Learning Intern with the UofT Machine Intelligence Student Team, I worked on RAG systems and vector database optimization.",
+    note: "Canada | Feb 2024 – June 2024"
+  },
+  {
+    start: 2024,
+    title: "DeepCove Cyber",
+    text: "As a Machine Learning Cybersecurity Intern, I developed deep learning models for cybersecurity log analysis and threat detection.",
+    note: "Canada | June 2024 – Dec 2024"
+  },
+  {
+    start: 2025,
+    title: "Manulife",
+    text: "As a Software Engineer Intern, I focused on deploying AI-powered solutions to improve client onboarding and internal processes.",
+    note: "Canada | Apr 2025 – Aug 2025"
+  },
+  {
+    start: 2025,
+    title: "RBC",
+    text: "As a Machine Learning Data Engineer, I worked on improving fund turnover prediction accuracy and optimizing data processing pipelines for financial analytics.",
+    note: "Canada | May 2025 – Aug 2025"
+  }
+];
+
+const mobileExperience = ref(1);
+
+const activeExperience = ref("");
+const activeExperienceIdx = ref(-1);
+
+let timeout: ReturnType<typeof setTimeout>;
+
+function setActiveExperience(title: string) {
+  activeExperience.value = title;
+  if (!title) emit("experienceUnfocus");
+  else emit("experienceFocus");
+}
+
+watch(
+  () => activeExperience.value,
+  (val) => {
+    const idx = EXPERIENCES.findIndex((exp) => exp.title === val);
+
+    if (idx === -1) return (timeout = setTimeout(() => (activeExperienceIdx.value = -1), 500));
+    clearTimeout(timeout);
+    activeExperienceIdx.value = idx;
+  }
+);
+
+function onMobileScroll(e: Event) {
+  const factor = (EXPERIENCES.length + 2) * EXPERIENCES.length;
+  const element = e.target as HTMLElement;
+  const scrollPercentage = (100 * element.scrollLeft) / (element.scrollWidth - element.clientWidth);
+
+  mobileExperience.value = Math.min(Math.floor(scrollPercentage / factor) + 1, EXPERIENCES.length);
+}
+</script>
+
+<style scoped>
+.timeline-container {
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+}
+
+div,
+article {
+  @apply transition-all;
+}
+
+.scroll-snap {
+  scroll-snap-align: center;
+}
+
+.line {
+  box-shadow: 0 0 1em 0.05em var(--secondary);
+}
+
+.line-secondary {
+  --padding: calc((var(--experience-idx) - 1) * 4.5rem);
+  --left-pos: calc(
+    calc(var(--experience-idx) * (100% / (var(--experiences) + 2))) + var(--padding)
+  );
+
+  --width: calc((100% / var(--experiences) - 1.5rem) + var(--left-pos));
+
+  --animation-duration: 0.375s;
+  box-shadow: 0 0 1em 0.05em var(--secondary);
+}
+.dot {
+  box-shadow: 0 0 1em 0.3em var(--primary);
+  @apply relative aspect-square h-6 rounded-full bg-primary;
+}
+
+.dot-border {
+  @apply relative aspect-square h-6 rounded-full;
+}
+
+.dot-border::after {
+  position: absolute;
+  content: "";
+  top: 50%;
+  left: 50%;
+  translate: -50% -50%;
+
+  @apply aspect-square h-10 rounded-full border-4;
+}
+
+.dot-title {
+  @apply relative aspect-square h-6 rounded-full;
+}
+
+.dot-title::after {
+  position: absolute;
+  content: var(--text);
+  top: 50%;
+  left: 50%;
+  translate: -50% calc(-50% + 3rem);
+
+  @apply w-max;
+}
+
+.dot-article {
+  @apply absolute left-1/2 flex w-[90vw] -translate-x-1/2 flex-col gap-1 rounded-xl p-2 2xl:w-[30vw] 2xl:gap-2;
+}
+
+.article-top {
+  @apply -top-[13.5rem] 2xl:-top-[18rem];
+}
+
+.article-bottom {
+  @apply top-[2rem] 2xl:top-[3rem];
+}
+
+.top-title {
+  @apply hidden-dot 2xl:visible 2xl:opacity-100;
+}
+
+.line-animation {
+  animation: line-anim var(--animation-duration) ease-in forwards;
+}
+
+@keyframes line-anim {
+  0% {
+    left: 0;
+    width: 0;
+  }
+  100% {
+    width: var(--width);
+    left: 0;
+  }
+}
+
+@keyframes line-anim-reverse {
+  0% {
+    width: var(--width);
+    left: 0;
+  }
+
+  100% {
+    left: var(--width);
+    width: 0;
+  }
+}
+
+.line-still {
+  animation: line-anim-reverse var(--animation-duration) ease-in forwards;
+}
+
+@keyframes line-anim-mobile {
+  100% {
+    width: 20% !important;
+  }
+}
+
+@media (max-width: 1535px) {
+  .line-secondary-mobile {
+    --base-pct: calc(100% / (var(--experiences) + 2));
+    --mobile-width: calc(
+      (var(--base-pct) + 1.5rem) * var(--mobile-experience) + 4rem * (var(--mobile-experience) - 1)
+    );
+
+    width: 0 !important;
+  }
+
+  .line-secondary-width-mobile {
+    width: var(--mobile-width) !important;
+  }
+
+  .line-animation {
+    animation: none;
+  }
+
+  .line-still {
+    animation: none;
+  }
+}
+</style>
