@@ -30,6 +30,8 @@
         I prefer small teams, quick iteration cycles, and taking ideas from zero to deployed.
         <br />
         I'm competitive, curious, and always pushing for the next challenge — especially where AI meets real impact.
+        <br />
+        Right now, I'm building Pokerly.
       </p>
     </div>
     <div class="ml-4 flex gap-2 text-secondary 2xl:hidden">
@@ -42,9 +44,9 @@
 </template>
 
 <script setup lang="ts">
+import CloseBracket from "@/components/CloseBracket.vue";
 import Header from "@/components/Header.vue";
 import PageWrapper from "@/components/PageWrapper.vue";
-import CloseBracket from "@/components/CloseBracket.vue";
 import type { PageProps } from "@/types";
 
 const props = defineProps<PageProps>();
