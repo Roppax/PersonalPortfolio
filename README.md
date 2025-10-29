@@ -1,23 +1,24 @@
 # Robert Reder Portfolio
 
-A modern, responsive portfolio website built with Vue 3, TypeScript, and Tailwind CSS.
+A modern, responsive portfolio website built with Vue 3, TypeScript, and Tailwind CSS. Inspired by the Myphz portfolio design with interactive animations and smooth transitions.
 
 ## Features
 
-- Modern, clean design with custom animations
-- Responsive layout that works on all devices
-- Interactive terminal-style animation on load
-- Smooth scrolling between sections
-- Custom color scheme with blue/purple theme
-- Typing animations and hover effects
+- **Interactive Work Timeline**: Hover-based experience showcase with animated timeline
+- **Project Carousel**: Showcase projects with cover images and descriptions
+- **Skills Organization**: Categorized skills with neon separator lines
+- **Contact Form**: Email submission form with social media links
+- **Animated Background**: Site-wide floating gradient patterns and grid effects
+- **Responsive Design**: Works seamlessly on desktop and mobile devices
+- **Modern Animations**: Typing effects, fade-ins, and smooth transitions
 
 ## Technologies Used
 
-- Vue 3 with Composition API
-- TypeScript
-- Tailwind CSS
-- Vite for build tooling
-- OGL for WebGL animations
+- **Frontend**: Vue 3 with Composition API, TypeScript
+- **Styling**: Tailwind CSS with custom animations
+- **Build Tool**: Vite
+- **Animations**: OGL for WebGL effects, CSS keyframes
+- **Components**: Vue3-Carousel for project showcase
 
 ## Getting Started
 
@@ -39,14 +40,29 @@ npm run dev
 npm run build
 ```
 
+## Project Structure
+
+```
+src/
+├── components/     # Reusable Vue components
+├── pages/         # Main page components
+├── utils/         # Utility functions and store
+├── assets/        # CSS and static assets
+└── types/         # TypeScript type definitions
+```
+
 ## Customization
 
 The portfolio is easily customizable:
 
-- Update personal information in the page components
-- Modify colors in `tailwind.config.ts`
-- Add your own projects and experience in the respective pages
-- Update contact information in the Contact page
+- **Personal Info**: Update experience, projects, and skills in respective components
+- **Styling**: Modify colors and animations in `tailwind.config.ts` and `main.css`
+- **Content**: Add/remove projects, update contact information
+- **Images**: Replace project covers in `public/images/`
+
+## Deployment
+
+This portfolio is deployed on Vercel with automatic deployments from the main branch.
 
 ## License
 
