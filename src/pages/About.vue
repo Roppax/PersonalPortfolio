@@ -30,8 +30,6 @@
         I prefer small teams, quick iteration cycles, and taking ideas from zero to deployed.
         <br />
         I'm competitive, curious, and always pushing for the next challenge — especially where AI meets real impact.
-        <br />
-        Right now, I'm building Pokerly.
       </p>
     </div>
     <div class="ml-4 flex gap-2 text-secondary 2xl:hidden">
