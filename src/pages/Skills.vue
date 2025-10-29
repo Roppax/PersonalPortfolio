@@ -88,7 +88,7 @@ const FRAMEWORKS = [
 const ML_AI = [
   { name: "TensorFlow", icon: "tensorflow" },
   { name: "PyTorch", icon: "pytorch" },
-  { name: "Scikit-learn", icon: "sklearn" },
+  { name: "Scikit-learn", icon: "scikit-learn" },
   { name: "Pandas", icon: "pandas" },
   { name: "NumPy", icon: "numpy" },
   { name: "OpenCV", icon: "opencv" },
