@@ -10,6 +10,7 @@
                 class="flex gap-2"
                 @click="$emit('close')"
                 :target="tab.href?.startsWith('/') ? '_blank' : '_self'"
+                :download="tab.href?.endsWith('.pdf') ? 'RobertRederResume.pdf' : undefined"
               >
                 <span class="text-secondary">{{ i }}.</span>
                 <span :class="{ 'text-secondary': activePage === tab.id }">{{ tab.name }}</span>

@@ -17,6 +17,7 @@
             :href="tab.href"
             class="flex gap-2"
             :target="tab.href?.startsWith('/') ? '_blank' : '_self'"
+            :download="tab.href?.endsWith('.pdf') ? 'RobertRederResume.pdf' : undefined"
           >
             <span class="text-secondary">{{ i }}.</span>
             <span>{{ tab.name }}</span>
