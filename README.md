@@ -1,6 +1,6 @@
 # Robert Reder Portfolio
 
-A modern, responsive portfolio website built with Vue 3, TypeScript, and Tailwind CSS. Inspired by the Myphz portfolio design with interactive animations and smooth transitions.
+A modern, responsive portfolio website built with Vue 3, TypeScript, and Tailwind CSS.
 
 ## Features
 
@@ -19,46 +19,6 @@ A modern, responsive portfolio website built with Vue 3, TypeScript, and Tailwin
 - **Build Tool**: Vite
 - **Animations**: OGL for WebGL effects, CSS keyframes
 - **Components**: Vue3-Carousel for project showcase
-
-## Getting Started
-
-1. Install dependencies:
-
-```bash
-npm install
-```
-
-2. Start the development server:
-
-```bash
-npm run dev
-```
-
-3. Build for production:
-
-```bash
-npm run build
-```
-
-## Project Structure
-
-```
-src/
-├── components/     # Reusable Vue components
-├── pages/         # Main page components
-├── utils/         # Utility functions and store
-├── assets/        # CSS and static assets
-└── types/         # TypeScript type definitions
-```
-
-## Customization
-
-The portfolio is easily customizable:
-
-- **Personal Info**: Update experience, projects, and skills in respective components
-- **Styling**: Modify colors and animations in `tailwind.config.ts` and `main.css`
-- **Content**: Add/remove projects, update contact information
-- **Images**: Replace project covers in `public/images/`
 
 ## Deployment
 
