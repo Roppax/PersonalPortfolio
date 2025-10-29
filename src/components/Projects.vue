@@ -56,12 +56,6 @@ const PROJECTS = [
     redirect: "https://github.com/Roppax/mitreClassifier",
     description: "MITRE ATT&CK classifier project for cybersecurity threat detection and analysis. Built with Python and machine learning techniques to identify and categorize cyber attack patterns.",
     image: "/mitreclassifier.webp"
-  },
-  {
-    name: "Pokerly",
-    redirect: "https://github.com/Roppax/pokerly",
-    description: "Advanced poker analysis tool built with Python. Provides statistical analysis, hand evaluation, and strategic insights for poker players looking to improve their game.",
-    image: "/pokerly.webp"
   }
 ] as const;
 </script>

@@ -52,7 +52,7 @@ export const PAGES: readonly Page[] = [
   {
     id: "resume",
     name: "Resume",
-    href: "/RobertRederResume (4) (1).pdf"
+    href: "/RobertRederResume.pdf"
   }
 ] as const;
 

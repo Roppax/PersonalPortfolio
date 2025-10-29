@@ -89,7 +89,7 @@ const primaryColor = config.theme.colors.primary;
 const secondaryColor = config.theme.colors.secondary;
 
 const emit = defineEmits(["experienceFocus", "experienceUnfocus"]);
-// Ordered exactly as requested: UTMISt -> DeepCove -> Manulife -> RBC
+// Ordered exactly as requested: UTMISt -> DeepCove -> Manulife -> RBC -> Pokerly
 const EXPERIENCES = [
   {
     start: 2024,
@@ -114,6 +114,12 @@ const EXPERIENCES = [
     title: "RBC",
     text: "As a Machine Learning Data Engineer, I worked on improving fund turnover prediction accuracy and optimizing data processing pipelines for financial analytics.",
     note: "Canada | May 2025 – Aug 2025"
+  },
+  {
+    start: 2024,
+    title: "Pokerly",
+    text: "Advanced poker analysis tool. Provides statistical analysis, hand evaluation, and strategic insights for poker players looking to improve their game.",
+    note: "Co-Founder & CTO | Sep. 2025 – Present"
   }
 ];
 
