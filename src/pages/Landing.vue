@@ -11,9 +11,7 @@
         :tokens="HEADLINES"
       />
       <p class="2xl:-mt-3 2xl:max-w-[40vw]">
-        Machine Learning Engineer & Software Developer passionate about AI
-        innovation and building impactful solutions. Currently pursuing BSc in
-        Mathematics, Statistics & Computer Science at University of Toronto.
+        I design and build intelligent systems — from research to production. Right now, I'm studying Math, Stats & Computer Science at the University of Toronto.
       </p>
 
       <div class="button-container mt-6 flex gap-3 2xl:gap-6">
