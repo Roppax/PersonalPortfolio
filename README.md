@@ -1,4 +1,4 @@
-# Robert Reder Portfolio
+# Robert Reder Portfolio - robreder.com
 
 A modern, responsive portfolio website built with Vue 3, TypeScript, and Tailwind CSS.
 
