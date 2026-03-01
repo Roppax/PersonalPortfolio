@@ -1,51 +1,42 @@
 <template>
-  <PageWrapper class="flex flex-col justify-center" id="about" v-bind="props">
-    <Header>ABOUT</Header>
+  <PageWrapper id="about" v-bind="props" class="border-t border-border py-24">
+    <div ref="revealEl" class="reveal">
+      <div class="grid gap-10 lg:grid-cols-[160px_1fr] lg:gap-20">
+        <p class="font-mono text-label uppercase text-accent">About</p>
 
-    <div
-      class="flex flex-col gap-8 pl-4 2xl:w-[90%] 2xl:flex-row 2xl:gap-60 2xl:pl-8 [&>*]:flex-1"
-    >
-      <div class="flex flex-col gap-8">
-        <div>
-          <p>
-            I build and ship machine learning systems — fast.
-          </p>
-          <p>
-            I care about solving real problems, not just training models.
-          </p>
-          <p>
-            Currently studying Math, Stats & CS at UofT.
-          </p>
-        </div>
+        <div class="grid gap-16 md:grid-cols-5">
+          <div class="md:col-span-3">
+            <p class="text-lg leading-relaxed text-muted md:text-xl md:leading-relaxed">
+              I build software that solves real problems —
+              <span class="text-text">fast</span>.
+              I've worked across finance, cybersecurity, and machine learning,
+              and I care about shipping things that actually work at scale.
+            </p>
+          </div>
 
-        <div class="hidden gap-2 text-secondary 2xl:flex">
-          <span>🎓</span>
-          <span>University of Toronto • Expected May 2027</span>
+          <div class="space-y-8 text-sm md:col-span-2">
+            <div>
+              <p class="mb-2 font-mono text-label uppercase text-accent/50">Now</p>
+              <p class="text-muted">Software Engineer at <span class="text-text">Point72</span></p>
+              <p class="text-muted">Co-Founder & CTO at <span class="text-text">PureInt</span></p>
+            </div>
+            <div>
+              <p class="mb-2 font-mono text-label uppercase text-accent/50">Education</p>
+              <p class="text-muted">BSc Math, Statistics & CS</p>
+              <p class="text-dim">University of Toronto · 2027</p>
+            </div>
+          </div>
         </div>
       </div>
-
-      <p class="mb-8 2xl:mb-0">
-        I'm driven by hard problems and real-world results. I've worked across finance and cybersecurity, where reliability and scale actually matter.
-        <br />
-        I prefer small teams, quick iteration cycles, and taking ideas from zero to deployed.
-        <br />
-        I'm competitive, curious, and always pushing for the next challenge — especially where AI meets real impact.
-      </p>
     </div>
-    <div class="ml-4 flex gap-2 text-secondary 2xl:hidden">
-      <span>🎓</span>
-      <span>University of Toronto • Expected May 2027</span>
-    </div>
-
-    <CloseBracket />
   </PageWrapper>
 </template>
 
 <script setup lang="ts">
-import CloseBracket from "@/components/CloseBracket.vue";
-import Header from "@/components/Header.vue";
 import PageWrapper from "@/components/PageWrapper.vue";
 import type { PageProps } from "@/types";
+import { useReveal } from "@/utils/useReveal";
 
 const props = defineProps<PageProps>();
+const revealEl = useReveal();
 </script>

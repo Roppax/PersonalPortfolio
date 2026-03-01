@@ -1,25 +1,19 @@
 <template>
   <button
-    class="flex rounded-lg px-4 transition-all text-responsive-h3 disabled:cursor-not-allowed disabled:opacity-50"
+    class="inline-flex items-center justify-center rounded-lg px-6 py-3 text-sm font-medium transition-all duration-300 disabled:cursor-not-allowed disabled:opacity-50"
     :class="styles[variant]"
     :disabled="isLoading"
-    :style="`--primary: ${primaryColor}`"
   >
     <slot />
-    <LoadingIcon class="h-[1.5em] w-[1.5em]" v-if="isLoading" />
+    <LoadingIcon class="ml-2 h-4 w-4" v-if="isLoading" />
   </button>
 </template>
 
 <script setup lang="ts">
-import resolveConfig from "tailwindcss/resolveConfig";
 import { toRefs } from "vue";
-import tailwindConfig from "../../tailwind.config";
 import LoadingIcon from "./LoadingIcon.vue";
 
-const config = resolveConfig(tailwindConfig);
-const primaryColor = config.theme.colors.primary;
-
-type Variant = "primary" | "secondary";
+type Variant = "primary" | "secondary" | "ghost";
 
 const props = withDefaults(defineProps<{ variant: Variant; isLoading?: boolean }>(), {
   isLoading: false
@@ -27,13 +21,8 @@ const props = withDefaults(defineProps<{ variant: Variant; isLoading?: boolean }
 const { variant, isLoading } = toRefs(props);
 
 const styles: Record<Variant, string> = {
-  primary: "bg-primary text-background",
-  secondary: "bg-background text-primary border border-primary"
+  primary: "bg-text text-background hover:bg-text/90",
+  secondary: "border border-border-light text-text hover:bg-surface-light hover:border-text-muted",
+  ghost: "text-text-secondary hover:text-text"
 };
 </script>
-
-<style scoped>
-button:hover {
-  box-shadow: 0.35em 0 0.75em 0.05em var(--primary);
-}
-</style>

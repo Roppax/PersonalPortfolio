@@ -1,35 +1,31 @@
 <template>
-  <header
-    class="fixed left-0 top-0 z-30 hidden w-full items-center justify-between bg-background px-4 py-4 text-responsive-h6 2xl:flex 2xl:px-40 2xl:pt-12"
-  >
-    <FromAbove is="div">DRAG ANYWHERE</FromAbove>
-    <nav>
-      <ul class="flex gap-6 uppercase">
-        <FromAbove
-          is="li"
-          v-for="(tab, i) in PAGES.filter((p) => p.name)"
+  <!-- Desktop -->
+  <header class="fixed left-0 top-0 z-30 hidden w-full md:block">
+    <div
+      class="mx-auto flex max-w-content items-center justify-between px-6 py-6 md:px-10 backdrop-blur-md bg-background/80"
+    >
+      <a href="#landing" class="text-sm font-medium text-text/90 hover:text-text transition-colors">
+        Robert Reder
+      </a>
+      <nav class="flex items-center gap-8">
+        <a
+          v-for="tab in PAGES.filter((p) => p.name)"
           :key="tab.name"
-          class="border-r border-text pr-6 transition-all last:border-0 hover:text-secondary"
-          :class="{ 'text-secondary': activePage === tab.id }"
-          :style="`--order: ${i + 3}`"
+          :href="tab.href"
+          :target="tab.href?.startsWith('/') ? '_blank' : '_self'"
+          class="text-[0.8125rem] text-muted hover:text-accent transition-colors"
         >
-          <a
-            :href="tab.href"
-            class="flex gap-2"
-            :target="tab.href?.startsWith('/') ? '_blank' : '_self'"
-          >
-            <span class="text-secondary">{{ i }}.</span>
-            <span>{{ tab.name }}</span>
-          </a>
-        </FromAbove>
-      </ul>
-    </nav>
+          {{ tab.name }}
+        </a>
+      </nav>
+    </div>
   </header>
 
-  <header
-    class="fixed left-0 top-0 z-30 flex w-full items-center justify-between px-4 py-4 text-responsive-h6 2xl:hidden"
-  >
-    <span>DRAG ANYWHERE</span>
+  <!-- Mobile -->
+  <header class="fixed left-0 top-0 z-30 flex w-full items-center justify-between px-6 py-5 backdrop-blur-md bg-background/80 md:hidden">
+    <a href="#landing" class="text-sm font-medium text-text/90">
+      Robert Reder
+    </a>
     <Hamburger :open="navOpen" @toggle="navOpen = !navOpen" />
   </header>
 
@@ -39,8 +35,6 @@
 <script setup lang="ts">
 import { ref } from "vue";
 import { PAGES } from "../utils/pages";
-import { activePage } from "../utils/store";
-import FromAbove from "./FromAbove.vue";
 import Hamburger from "./Hamburger.vue";
 import Menu from "./Menu.vue";
 

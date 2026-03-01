@@ -1,107 +1,46 @@
 <template>
-  <PageWrapper class="flex flex-col justify-center" id="skills" v-bind="props">
-    <Header>SKILLS</Header>
+  <PageWrapper id="skills" v-bind="props" class="border-t border-border py-24">
+    <div ref="revealEl" class="reveal">
+      <div class="grid gap-10 lg:grid-cols-[160px_1fr] lg:gap-20">
+        <p class="font-mono text-label uppercase text-accent">Skills</p>
 
-    <div class="flex flex-col gap-8 pl-4 2xl:w-[90%] 2xl:pl-8 relative">
-      <!-- Single Row Layout -->
-      <div class="relative flex flex-col gap-8 2xl:flex-row 2xl:gap-16">
-        <!-- Languages -->
-        <div class="flex-1">
-          <header class="text-secondary text-responsive-h4 mb-4">LANGUAGES</header>
-          <div class="flex flex-col gap-3">
-            <Skill v-for="s in LANGUAGES" :key="s.name" :skill="s" />
-          </div>
-        </div>
-        
-        <!-- Neon Blue Separator Line 1 -->
-        <div class="hidden 2xl:block absolute left-1/4 top-0 bottom-0 w-0.5 bg-primary transform -translate-x-1/2" 
-             style="box-shadow: 0 0 20px #3b82f6, 0 0 40px #3b82f6, 0 0 60px #3b82f6;"></div>
-        
-        <!-- Frameworks -->
-        <div class="flex-1">
-          <header class="text-secondary text-responsive-h4 mb-4">FRAMEWORKS</header>
-          <div class="flex flex-col gap-3">
-            <Skill v-for="s in FRAMEWORKS" :key="s.name" :skill="s" />
-          </div>
-        </div>
-        
-        <!-- Neon Blue Separator Line 2 -->
-        <div class="hidden 2xl:block absolute left-1/2 top-0 bottom-0 w-0.5 bg-primary transform -translate-x-1/2" 
-             style="box-shadow: 0 0 20px #3b82f6, 0 0 40px #3b82f6, 0 0 60px #3b82f6;"></div>
-        
-        <!-- Machine Learning -->
-        <div class="flex-1">
-          <header class="text-secondary text-responsive-h4 mb-4">MACHINE LEARNING</header>
-          <div class="flex flex-col gap-3">
-            <Skill v-for="s in ML_AI" :key="s.name" :skill="s" />
-          </div>
-        </div>
-        
-        <!-- Neon Blue Separator Line 3 -->
-        <div class="hidden 2xl:block absolute left-3/4 top-0 bottom-0 w-0.5 bg-primary transform -translate-x-1/2" 
-             style="box-shadow: 0 0 20px #3b82f6, 0 0 40px #3b82f6, 0 0 60px #3b82f6;"></div>
-        
-        <!-- Cloud & DevOps -->
-        <div class="flex-1">
-          <header class="text-secondary text-responsive-h4 mb-4">CLOUD & DEVOPS</header>
-          <div class="flex flex-col gap-3">
-            <Skill v-for="s in CLOUD_DEVOPS" :key="s.name" :skill="s" />
+        <div class="grid gap-10 sm:grid-cols-2 lg:grid-cols-4">
+          <div v-for="category in CATEGORIES" :key="category.title">
+            <p class="mb-4 font-mono text-label uppercase text-accent/40">{{ category.title }}</p>
+            <p class="text-sm leading-relaxed text-muted">
+              {{ category.items.join(", ") }}
+            </p>
           </div>
         </div>
       </div>
     </div>
-
-    <CloseBracket />
   </PageWrapper>
 </template>
 
 <script setup lang="ts">
-import CloseBracket from "@/components/CloseBracket.vue";
-import Header from "@/components/Header.vue";
 import PageWrapper from "@/components/PageWrapper.vue";
-import Skill from "@/components/Skill.vue";
 import type { PageProps } from "@/types";
+import { useReveal } from "@/utils/useReveal";
 
 const props = defineProps<PageProps>();
+const revealEl = useReveal();
 
-const LANGUAGES = [
-  { name: "Python", icon: "python" },
-  { name: "TypeScript", icon: "ts" },
-  { name: "JavaScript", icon: "javascript" },
-  { name: "Java", icon: "java" },
-  { name: "Rust", icon: "rust" },
-  { name: "C++", icon: "cpp" },
-  { name: "R", icon: "r" },
-  { name: "SQL", icon: "sql" }
-];
-
-const FRAMEWORKS = [
-  { name: "Vue.js", icon: "vue" },
-  { name: "React", icon: "react" },
-  { name: "Node.js", icon: "node" },
-  { name: "Express", icon: "express" },
-  { name: "FastAPI", icon: "fastapi" },
-  { name: "Django", icon: "django" },
-  { name: "Flask", icon: "flask" }
-];
-
-const ML_AI = [
-  { name: "TensorFlow", icon: "tensorflow" },
-  { name: "PyTorch", icon: "pytorch" },
-  { name: "Scikit-learn", icon: "scikit-learn" },
-  { name: "Pandas", icon: "pandas" },
-  { name: "NumPy", icon: "numpy" },
-  { name: "OpenCV", icon: "opencv" },
-  { name: "Jupyter", icon: "jupyter" }
-];
-
-const CLOUD_DEVOPS = [
-  { name: "AWS", icon: "aws" },
-  { name: "Docker", icon: "docker" },
-  { name: "Kubernetes", icon: "kubernetes" },
-  { name: "Terraform", icon: "terraform" },
-  { name: "Jenkins", icon: "jenkins" },
-  { name: "Git", icon: "git" },
-  { name: "Linux", icon: "linux" }
+const CATEGORIES = [
+  {
+    title: "Languages",
+    items: ["Python", "TypeScript", "JavaScript", "Java", "Rust", "C++", "R", "SQL"],
+  },
+  {
+    title: "Frameworks",
+    items: ["Vue.js", "React", "Node.js", "Express", "FastAPI", "Django", "Flask"],
+  },
+  {
+    title: "ML & Data",
+    items: ["TensorFlow", "PyTorch", "Scikit-learn", "Pandas", "NumPy", "OpenCV"],
+  },
+  {
+    title: "Infrastructure",
+    items: ["AWS", "Docker", "Kubernetes", "Terraform", "Jenkins", "Git", "Linux"],
+  },
 ];
 </script>

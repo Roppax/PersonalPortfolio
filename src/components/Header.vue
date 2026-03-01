@@ -1,7 +1,8 @@
 <template>
-  <header class="mb-2 flex gap-4 font-subheader text-primary text-responsive-h2 2xl:mb-8 2xl:gap-8">
-    <span><slot /></span>
-    <span class="text-secondary">{{ "{" }}</span>
+  <header class="mb-12 flex items-center gap-4 md:mb-16">
+    <span class="text-section-title font-mono uppercase tracking-widest text-text-secondary">
+      <slot />
+    </span>
+    <div class="gradient-line flex-1" />
   </header>
-  
 </template>

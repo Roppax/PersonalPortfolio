@@ -26,14 +26,8 @@ export const PAGES: readonly Page[] = [
     component: About
   },
   {
-    id: "skills",
-    name: "Skills",
-    href: "#skills",
-    component: Skills
-  },
-  {
     id: "work",
-    name: "Work",
+    name: "Experience",
     href: "#work",
     component: Work
   },
@@ -42,6 +36,12 @@ export const PAGES: readonly Page[] = [
     name: "Projects",
     href: "#projects",
     component: Projects
+  },
+  {
+    id: "skills",
+    name: "Skills",
+    href: "#skills",
+    component: Skills
   },
   {
     id: "contact",

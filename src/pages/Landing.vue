@@ -1,76 +1,42 @@
 <template>
   <PageWrapper
-    class="flex flex-col pt-[10vh] 2xl:block 2xl:pt-0"
     v-bind="props"
     id="landing"
+    class="relative flex min-h-screen flex-col justify-start overflow-hidden pt-[32vh]"
   >
-    <section class="flex h-full flex-col justify-center gap-3 2xl:gap-6">
-      <MainText />
-      <TypingAlternate
-        class="leading-none 2xl:max-w-[50vw]"
-        :tokens="HEADLINES"
-      />
-      <p class="2xl:-mt-3 2xl:max-w-[40vw]">
-        I design and build intelligent systems — from research to production. Right now, I'm studying Math, Stats & Computer Science at the University of Toronto and building Pokerly.
+    <!-- Subtle ambient glow -->
+    <div
+      class="pointer-events-none absolute -left-[15%] top-[20%] h-[500px] w-[500px] rounded-full opacity-[0.035]"
+      style="background: radial-gradient(circle, #5b9cf5, transparent 70%)"
+    />
+
+    <div class="hero-stagger relative">
+      <p class="font-mono text-label uppercase text-accent">
+        Software Engineer · Co-Founder
       </p>
 
-      <div class="button-container mt-6 flex gap-3 2xl:gap-6">
-        <Button variant="primary" @click="redirect('contact')"
-          >Contact Me</Button
-        >
-        <Button
-          variant="secondary"
-          class="flex items-center gap-2 2xl:gap-4"
-          @click="redirect('about')"
-        >
-          <span>Learn More</span>
-          <ArrowIcon />
-        </Button>
-      </div>
-    </section>
+      <h1 class="mt-5 text-hero text-text">
+        Robert Reder
+      </h1>
 
-    <Blobs />
+      <p class="mt-6 max-w-md text-subtitle text-muted">
+        SWE at <span class="text-text">Point72</span>.
+        Co-Founder of <span class="text-text">PureInt</span>.
+        Building intelligent systems from research to production.
+      </p>
+
+      <div class="mt-10 flex gap-6 text-[0.8125rem]">
+        <a href="https://github.com/Roppax" target="_blank" class="text-dim hover:text-accent transition-colors">GitHub</a>
+        <a href="https://linkedin.com/in/robert-reder/" target="_blank" class="text-dim hover:text-accent transition-colors">LinkedIn</a>
+        <a href="mailto:rob.reder06@gmail.com" class="text-dim hover:text-accent transition-colors">Email</a>
+      </div>
+    </div>
   </PageWrapper>
 </template>
 
 <script setup lang="ts">
 import PageWrapper from "@/components/PageWrapper.vue";
-import MainText from "@/components/MainText.vue";
-import Blobs from "@/components/Blobs.vue";
-import TypingAlternate from "@/components/TypingAlternate.vue";
-import Button from "@/components/Button.vue";
-import ArrowIcon from "@/assets/arrow.svg";
 import type { PageProps } from "@/types";
 
-const redirect = (to: string) => {
-  window.location.hash = to;
-};
-
 const props = defineProps<PageProps>();
-
-const HEADLINES = [
-  "MACHINE LEARNING ENGINEER",
-  "DATA ENGINEER",
-  "SOFTWARE DEVELOPER",
-  "AI RESEARCHER",
-  "ML/AI SPECIALIST",
-  "DEEP LEARNING EXPERT",
-  "PYTHON DEVELOPER",
-];
 </script>
-
-<style scoped>
-p,
-.button-container {
-  translate: 0 40%;
-  opacity: 0;
-  animation: fadeUp 0.25s ease-in-out 1.5s forwards;
-}
-
-@keyframes fadeUp {
-  to {
-    translate: 0 0;
-    opacity: 1;
-  }
-}
-</style>

@@ -1,6 +1,6 @@
 <template>
   <section
-    class="page relative mx-4 h-[100dvh] overflow-hidden py-4 2xl:mx-40 2xl:py-28"
+    class="mx-auto max-w-content px-6 md:px-10"
     ref="pageRef"
   >
     <slot />
@@ -8,36 +8,10 @@
 </template>
 
 <script setup lang="ts">
-import { isVisible } from "@/utils/dom";
 import type { PageProps } from "@/types";
-import { activePage } from "@/utils/store";
-import { onMounted, ref } from "vue";
+import { ref } from "vue";
 
-const { pageId } = defineProps<PageProps>();
-
+defineProps<PageProps>();
 const pageRef = ref<HTMLDivElement | null>(null);
-
-onMounted(() => {
-  async function onScroll() {
-    // Wait for scroll to complete
-    await new Promise((res) => setTimeout(res, 700));
-
-    if (isVisible(pageRef.value!)) {
-      activePage.value = pageId;
-    }
-  }
-
-  function onHashChange(e: HashChangeEvent) {
-    const hash = e.newURL.split("#")[1];
-    if (!hash) return;
-    activePage.value = hash;
-  }
-
-  window.addEventListener("wheel", onScroll, { passive: true });
-  window.addEventListener("touchstart", onScroll, { passive: true });
-  window.addEventListener("touchmove", onScroll, { passive: true });
-  window.addEventListener("hashchange", onHashChange, { passive: true });
-});
-
 defineExpose({ pageRef });
 </script>

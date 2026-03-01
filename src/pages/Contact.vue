@@ -1,90 +1,81 @@
 <template>
-  <PageWrapper class="flex flex-col justify-center" id="contact" v-bind="props">
-    <Header>CONTACT</Header>
-    <section class="flex flex-col gap-6 pl-4 2xl:flex-row 2xl:gap-20 2xl:pl-8 [&>*]:flex-1">
-      <div>
-        <header class="text-secondary text-responsive-h3">Have a project in mind?</header>
-        <div>My inbox is always open for new opportunities.</div>
+  <PageWrapper id="contact" v-bind="props" class="border-t border-border py-24">
+    <div ref="revealEl" class="reveal">
+      <div class="grid gap-10 lg:grid-cols-[160px_1fr] lg:gap-20">
+        <p class="font-mono text-label uppercase text-accent">Contact</p>
 
-        <div class="mt-16 hidden flex-col gap-4 2xl:flex">
-          <a href="https://github.com/Roppax" target="_blank" class="flex w-fit items-center gap-2">
-            <img src="/icons/github.png" class="img" alt="github" />
-            <span>Roppax</span>
-          </a>
-          <a
-            href="mailto:rob.reder06@gmail.com"
-            target="_blank"
-            class="flex w-fit items-center gap-2"
-          >
-            <img src="/icons/email.svg" class="img scale-[0.8]" alt="email" />
-            <span>rob.reder06@gmail.com</span>
-          </a>
-          <a
-            href="https://www.linkedin.com/in/robert-reder/"
-            target="_blank"
-            class="flex w-fit items-center gap-2"
-          >
-            <img src="/icons/linkedin.png" class="img" alt="linkedin" />
-            <span>Robert Reder</span>
-          </a>
+        <div class="grid gap-16 md:grid-cols-2">
+          <div>
+            <p class="text-lg leading-relaxed text-muted md:text-xl md:leading-relaxed">
+              Interested in working together?
+              <br />
+              <a
+                href="mailto:rob.reder06@gmail.com"
+                class="text-accent underline decoration-accent/30 underline-offset-4 transition-colors hover:decoration-accent/60"
+              >
+                Get in touch
+              </a>.
+            </p>
+            <div class="mt-10 space-y-2.5 text-sm">
+              <a href="mailto:rob.reder06@gmail.com" class="block text-dim hover:text-accent transition-colors">rob.reder06@gmail.com</a>
+              <a href="https://github.com/Roppax" target="_blank" class="block text-dim hover:text-accent transition-colors">github.com/Roppax</a>
+              <a href="https://linkedin.com/in/robert-reder/" target="_blank" class="block text-dim hover:text-accent transition-colors">linkedin.com/in/robert-reder</a>
+            </div>
+          </div>
+
+          <form class="space-y-5" @submit.prevent="onSubmit">
+            <div>
+              <label class="mb-1.5 block font-mono text-label uppercase text-accent/40">Email</label>
+              <input
+                required
+                name="email"
+                type="email"
+                class="w-full border-b border-border bg-transparent py-2.5 text-sm text-text placeholder:text-dim outline-none transition-colors focus:border-accent/50"
+                placeholder="you@example.com"
+              />
+            </div>
+            <div>
+              <label class="mb-1.5 block font-mono text-label uppercase text-accent/40">Subject</label>
+              <input
+                required
+                name="subject"
+                type="text"
+                class="w-full border-b border-border bg-transparent py-2.5 text-sm text-text placeholder:text-dim outline-none transition-colors focus:border-accent/50"
+                placeholder="What's this about?"
+              />
+            </div>
+            <div>
+              <label class="mb-1.5 block font-mono text-label uppercase text-accent/40">Message</label>
+              <textarea
+                required
+                name="body"
+                rows="4"
+                class="w-full resize-none border-b border-border bg-transparent py-2.5 text-sm text-text placeholder:text-dim outline-none transition-colors focus:border-accent/50"
+                placeholder="Tell me more..."
+              />
+            </div>
+            <button
+              type="submit"
+              :disabled="isLoading"
+              class="mt-2 text-sm text-accent transition-colors hover:text-text disabled:opacity-40"
+            >
+              {{ isLoading ? "Sending..." : "Send message →" }}
+            </button>
+          </form>
         </div>
       </div>
-
-      <form
-        class="flex max-w-[40rem] flex-col gap-2 2xl:gap-8 2xl:pr-16"
-        @submit.prevent="onSubmit"
-      >
-        <Input label="Email" type="email" name="email" />
-        <Input label="Subject" name="subject" />
-        <Textarea label="Message" name="body" />
-        <Button
-          variant="primary"
-          class="flex items-center justify-center gap-4"
-          :isLoading="isLoading"
-          type="submit"
-        >
-          Submit
-        </Button>
-      </form>
-
-      <div class="flex flex-col gap-2 2xl:hidden">
-        <a href="https://github.com/Roppax" target="_blank" class="flex w-fit items-center gap-2">
-          <img src="/icons/github.png" class="img" alt="github" />
-          <span>Roppax</span>
-        </a>
-        <a
-          href="mailto:rob.reder06@gmail.com"
-          target="_blank"
-          class="flex w-fit items-center gap-2"
-        >
-          <img src="/icons/email.svg" class="img scale-[0.8]" alt="email" />
-          <span>rob.reder06@gmail.com</span>
-        </a>
-        <a
-          href="https://www.linkedin.com/in/robert-reder/"
-          target="_blank"
-          class="flex w-fit items-center gap-2"
-        >
-          <img src="/icons/linkedin.png" class="img" alt="linkedin" />
-          <span>Robert Reder</span>
-        </a>
-      </div>
-    </section>
-    <CloseBracket />
+    </div>
   </PageWrapper>
 </template>
 
 <script setup lang="ts">
-import Button from "@/components/Button.vue";
-import CloseBracket from "@/components/CloseBracket.vue";
-import Header from "@/components/Header.vue";
-import Input from "@/components/Input.vue";
 import PageWrapper from "@/components/PageWrapper.vue";
-import Textarea from "@/components/Textarea.vue";
 import type { PageProps } from "@/types";
+import { useReveal } from "@/utils/useReveal";
 import { getCurrentInstance, ref } from "vue";
 
 const props = defineProps<PageProps>();
+const revealEl = useReveal();
 
 const $toast = getCurrentInstance()?.appContext.config.globalProperties.$toast!;
 const isLoading = ref(false);
@@ -95,17 +86,10 @@ const onSubmit = async (e: Event) => {
   const formData = Object.fromEntries(new FormData(e.target as HTMLFormElement));
   const res = await fetch("/email", { method: "POST", body: JSON.stringify(formData) });
   if (res.ok) {
-    $toast.success("I will reply soon!");
+    $toast.success("Thanks! I'll reply soon.");
   } else {
-    $toast.error("Unknown error. Please send the email manually");
+    $toast.error("Something went wrong. Please email me directly.");
   }
-
   isLoading.value = false;
 };
 </script>
-
-<style scoped>
-.img {
-  @apply aspect-square w-8 2xl:w-12;
-}
-</style>
